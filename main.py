@@ -7,6 +7,7 @@ from PIL import Image
 import streamlit as st
 
 from SurveyApp import *
+from CityAnalyzer import *
 
 def display_results(result_data):
     def card(rank, city_name, avg_income=100, population=1000, crime=23, img="1.jpg", sentence="this is a sentence", link='https://realestate.usnews.com/places/rankings/best-places-to-live'):
@@ -62,9 +63,12 @@ def display_results(result_data):
 def main():
     survey = SurveyApp()
     user_preferences = survey.run()
+
+    analyzer = CityAnalyzer()
+    analyzer.load_data() # load data from the csv file
+    result_data = analyzer.analyze_cities(user_preferences)
     
-    # display results where the `result_data` should be processed by class CityAnalyzer
-    # display_results(result_data)
+    display_results(result_data)
 
 if __name__ == '__main__':
     main()
