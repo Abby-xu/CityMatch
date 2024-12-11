@@ -11,6 +11,7 @@ class CityAnalyzer:
             self._process_raw_data()
             
     def _process_raw_data(self):
+        #loop
         for i in range(len(self.cityData)):
             if i == 0: continue
             self.cityData[i] = self.cityData[i].split(";")
